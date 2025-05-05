@@ -32,7 +32,7 @@ export default async function WatchPage({
   return (
     <div className="pt-16 h-screen flex flex-col">
       {/* Video player area */}
-      <div className="relative flex-grow min-h-[40vh] bg-black">
+      <div className="relative flex-grow min-h-[70vh] bg-black">
         <VideoPlayer
           mediaType="tv"
           tmdbId={tvShow.id.toString()}
@@ -101,7 +101,7 @@ export default async function WatchPage({
               
               {/* Episode Info */}
               {episodeData && (
-                <div className="mb-4">
+                <div className="mt-4">
                   <h2 className="text-lg font-semibold mb-2">
                     {episodeData.name}
                   </h2>

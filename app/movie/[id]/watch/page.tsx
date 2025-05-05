@@ -19,7 +19,7 @@ export default async function WatchPage({ params }: { params: { id: string } }) 
   return (
     <div className="pt-16 h-screen flex flex-col">
       {/* Video player area */}
-      <div className="relative flex-grow min-h-[40vh] bg-black">
+      <div className="relative flex-grow min-h-[70vh] bg-black">
         <VideoPlayer
           mediaType="movie"
           tmdbId={movie.id.toString()}
@@ -75,23 +75,9 @@ export default async function WatchPage({ params }: { params: { id: string } }) 
                 <span>HD</span>
               </div>
               
-              <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+              <p className="text-muted-foreground text-sm">
                 {movie.overview}
               </p>
-              
-              <div className="flex gap-3">
-                <Link href={`/movie/${movie.id}`}>
-                  <Button variant="outline" size="sm" className="gap-2">
-                    <Info className="h-3.5 w-3.5" />
-                    More Info
-                  </Button>
-                </Link>
-                
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Download className="h-3.5 w-3.5" />
-                  Download
-                </Button>
-              </div>
             </div>
           </div>
         </div>

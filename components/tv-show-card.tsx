@@ -86,7 +86,7 @@ export default function TVShowCard({
         </div>
         
         <div className="flex gap-2">
-          <Link href={`/tv-show/${tvShow.id}/watch`} className="flex-1">
+          <Link href={`/tv-show/${tvShow.id}`} className="flex-1">
             <Button size="sm" className="w-full gap-1">
               <Play className="h-3 w-3" />
               Watch

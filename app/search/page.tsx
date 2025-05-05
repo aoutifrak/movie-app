@@ -23,7 +23,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   const searchResults = await searchMovies(query);
   const movies = convertTMDBArray(searchResults?.results || []);
-  console.log(movies)
   return (
     <div className="container py-8">
       <h1 className="text-2xl font-bold mb-4">

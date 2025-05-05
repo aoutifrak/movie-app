@@ -19,7 +19,7 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Movies', href: '/movies' },
   { name: 'TV Shows', href: '/tv-shows' },
-  { name: 'Categories', href: '/category' },
+  { name: 'Categories', href: '/categories' },
   { name: 'Top IMDB', href: '/top-imdb' },
 ];
 

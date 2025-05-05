@@ -15,7 +15,6 @@ export function getWatchlist(): WatchlistItem[] {
   try {
     const movies = JSON.parse(localStorage.getItem('watchlistMovies') || '[]');
     const tvShows = JSON.parse(localStorage.getItem('watchlistTVShows') || '[]');
-    console.log('Watchlist loaded:', { movies, tvShows });
     return [...movies, ...tvShows];
   } catch (error) {
     console.error('Error loading watchlist:', error);
@@ -57,7 +56,6 @@ export function addToWatchlist(item: WatchlistItem): void {
     if (!currentItems.some((existing: WatchlistItem) => existing.id === item.id)) {
       currentItems.push(item);
       localStorage.setItem(storageKey, JSON.stringify(currentItems));
-      console.log(`Added to watchlist: ${item.title} (${item.media_type})`);
     } else {
       console.log(`Item already in watchlist: ${item.title} (${item.media_type})`);
     }
@@ -76,7 +74,6 @@ export function removeFromWatchlist(id: string, mediaType: 'movie' | 'tv'): void
     
     const updatedItems = currentItems.filter((item: WatchlistItem) => item.id !== id);
     localStorage.setItem(storageKey, JSON.stringify(updatedItems));
-    console.log(`Removed from watchlist: ID ${id} (${mediaType})`);
   } catch (error) {
     console.error('Error removing from watchlist:', error);
   }

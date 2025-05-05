@@ -86,7 +86,7 @@ export default function MovieCard({
         </div>
         
         <div className="flex gap-2">
-          <Link href={`/movie/${movie.id}/watch`} className="flex-1">
+          <Link href={`/movie/${movie.id}`} className="flex-1">
             <Button size="sm" className="w-full gap-1">
               <Play className="h-3 w-3" />
               Watch

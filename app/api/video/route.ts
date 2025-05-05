@@ -8,18 +8,16 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
   }
 
-  console.log('Proxying video URL:', url);
 
   try {
     const response = await axios.get(url, {
       responseType: 'stream',
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-        'Referer': 'https://123movies-nuiled-nuileds-projects.vercel.app/',
+        'Referer': 'https://123Movies-nuiled-nuileds-projects.vercel.app/',
       },
     });
 
-    console.log('Video response headers:', response.headers);
 
     // Forward the content type and other headers
     const headers = new Headers();

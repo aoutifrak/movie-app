@@ -101,7 +101,6 @@ export default function VideoPlayer({
     const video = videoRef.current;
     const source = currentProvider.files.find(f => f.quality === selectedQuality) || currentProvider.files[0];
 
-    console.log('Loading video source:', source);
 
     if (source.type === 'hls') {
       if (Hls.isSupported()) {
@@ -306,7 +305,7 @@ export default function VideoPlayer({
           <p className="text-lg mb-2">Error loading video</p>
           <p className="text-sm text-gray-400">{error}</p>
           <p className="text-xs text-gray-500 mt-2">
-            API URL: {process.env.NEXT_PUBLIC_API_URL}
+            "error"
           </p>
         </div>
       </div>
@@ -343,6 +342,23 @@ export default function VideoPlayer({
       {/* Controls overlay */}
       {showControls && (
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+          {/* Progress bar */}
+          <div className="w-full h-1 bg-gray-600 rounded-full mb-4 cursor-pointer" onClick={(e) => {
+            if (!videoRef.current) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            videoRef.current.currentTime = pos * videoRef.current.duration;
+          }}>
+            <div 
+              className="h-full bg-blue-500 rounded-full relative"
+              style={{ 
+                width: videoRef.current ? `${(videoRef.current.currentTime / videoRef.current.duration) * 100}%` : '0%'
+              }}
+            >
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-blue-500 rounded-full transform translate-x-1/2" />
+            </div>
+          </div>
+
           <div className="flex items-center justify-between">
             {/* Left controls */}
             <div className="flex items-center space-x-2">
@@ -388,13 +404,13 @@ export default function VideoPlayer({
           {/* Settings panel */}
           {isSettingsOpen && (
             <div 
-              className="mt-2 p-2 bg-black/90 rounded-lg"
+              className="mt-2 p-4 bg-black/90 rounded-lg absolute bottom-full mb-2 left-0 right-0"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Provider selector */}
                 <div>
-                  <label className="text-sm text-white/80">Provider</label>
+                  <label className="text-sm text-white/80 block mb-2">Provider</label>
                   <Select value={selectedProvider} onValueChange={handleProviderChange}>
                     <SelectTrigger className="w-full bg-transparent text-white">
                       <SelectValue placeholder="Select provider" />
@@ -412,7 +428,7 @@ export default function VideoPlayer({
                 {/* Quality selector */}
                 {currentProvider && (
                   <div>
-                    <label className="text-sm text-white/80">Quality</label>
+                    <label className="text-sm text-white/80 block mb-2">Quality</label>
                     <Select value={selectedQuality} onValueChange={handleQualityChange}>
                       <SelectTrigger className="w-full bg-transparent text-white">
                         <SelectValue placeholder="Select quality" />
@@ -431,7 +447,7 @@ export default function VideoPlayer({
                 {/* Subtitle selector */}
                 {currentProvider?.subtitles && currentProvider.subtitles.length > 0 && (
                   <div>
-                    <label className="text-sm text-white/80">Subtitles</label>
+                    <label className="text-sm text-white/80 block mb-2">Subtitles</label>
                     <Select value={selectedSubtitle} onValueChange={handleSubtitleChange}>
                       <SelectTrigger className="w-full bg-transparent text-white">
                         <SelectValue placeholder="Select subtitle" />

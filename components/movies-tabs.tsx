@@ -34,7 +34,16 @@ function MoviesTabsContent() {
   const page = searchParams.get('page') || '1';
 
   const handleTabChange = (value: string) => {
-    router.push(`/movies?tab=${value}&page=1`);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('tab', value);
+    params.set('page', '1'); // Reset to page 1 when changing tabs
+    router.push(`/movies?${params.toString()}`);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('page', newPage.toString());
+    router.push(`/movies?${params.toString()}`);
   };
 
   return (
@@ -46,13 +55,19 @@ function MoviesTabsContent() {
       
       <TabsContent value="popular">
         <Suspense fallback={<MoviesGridSkeleton />}>
-          <PopularMovies page={page} />
+          <PopularMovies 
+            page={page} 
+            onPageChange={handlePageChange}
+          />
         </Suspense>
       </TabsContent>
       
       <TabsContent value="top-rated">
         <Suspense fallback={<MoviesGridSkeleton />}>
-          <TopRatedMovies page={page} />
+          <TopRatedMovies 
+            page={page} 
+            onPageChange={handlePageChange}
+          />
         </Suspense>
       </TabsContent>
     </Tabs>

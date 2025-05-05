@@ -150,15 +150,12 @@ export async function fetchVideoSources(params: {
     ? `/api/${path}`
     : `${baseUrl}/${path}`;
 
-  console.log('Fetching video sources from:', apiUrl);
 
   try {
     const { data } = await axios.get(apiUrl);
-    console.log('Raw API response:', data);
     
     // Filter out providers with errors
     const validProviders = data.filter((p: any) => p.source && !p.ERROR);
-    console.log('Valid providers:', validProviders);
     
     if (validProviders.length === 0) {
       throw new Error('No valid video sources available');

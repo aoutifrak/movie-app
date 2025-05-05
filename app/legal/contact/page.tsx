@@ -63,7 +63,7 @@ export default function ContactPage() {
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-medium">Email Support</h3>
-                <p className="text-gray-600">support@streamingplatform.com</p>
+                <p className="text-gray-600">support@123Movies.org</p>
               </div>
               
               <div>
