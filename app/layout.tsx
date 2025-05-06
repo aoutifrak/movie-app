@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     default: '123Movies - Watch Movies Online Free | 123Movies.com',
     template: '%s | 123Movies'
   },
-  description: 'Watch free movies and TV shows online in HD quality on 123Movies. Stream the latest movies, TV series, and anime with English subtitles.',
-  metadataBase: new URL('https://123smovies.com'),
+  description: '123Movies lets you stream movies and TV shows online for free without the need for registration or annoying ads. Enjoy unlimited access to the latest films, series, and anime in HD quality with English subtitles.',
+  metadataBase: new URL('https://123smovies.com/'),
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://123smovies.com',
+    url: 'https://123smovies.com/',
     siteName: '123Movies',
     title: '123Movies - Watch Movies Online Free',
     description: 'Watch free movies and TV shows online in HD quality on 123Movies. Stream the latest movies, TV series, and anime with English subtitles.',
