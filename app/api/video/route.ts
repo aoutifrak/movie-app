@@ -8,17 +8,17 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
   }
 
-  console.log('Proxying video URL:', url);
 
   try {
     const response = await axios.get(url, {
       responseType: 'stream',
-      headers: {
-        'Referer': 'https://uqloads.xyz',
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-        'Origin': 'https://uqloads.xyz',
+      "headers": {
+        "Referer": "https://uqloads.xyz",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Origin": "https://uqloads.xyz"
       },
     });
+
 
     // Forward the content type and other headers
     const headers = new Headers();
@@ -32,19 +32,7 @@ export async function GET(request: NextRequest) {
       headers,
     });
   } catch (error) {
-    // Log the error and the response if available
     console.error('Error proxying video:', error);
-
-    if (error.response) {
-      // Log the response details if available
-      console.error('Response error data:', error.response.data);
-      console.error('Response status:', error.response.status);
-      console.error('Response headers:', error.response.headers);
-    } else {
-      // Log a general error message
-      console.error('Error without response:', error.message);
-    }
-
     return NextResponse.json({ error: 'Failed to fetch video' }, { status: 400 });
   }
 }
@@ -58,4 +46,4 @@ export async function OPTIONS() {
       'Access-Control-Allow-Headers': 'Content-Type',
     },
   });
-}
+} 
